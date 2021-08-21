@@ -1,0 +1,48 @@
+{% extends 'home/base.html' %}
+{% block title %} {{page.title}} {% endblock %}
+{% block css %}
+<style>
+    .head2 {
+        margin-top: 25px;
+    }
+
+    .head4 {
+        margin-top: 20px;
+
+    }
+
+    .content {
+        text-align: justify;
+    }
+</style>
+{% endblock %}
+{% block div1 %}
+<section>
+    <!-- Jumbotron -->
+    <div class="card card-image" style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Others/forest2.jpg);">
+        <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+            <div class="py-5">
+                <h2 class="card-title h2 my-4 py-2">MAIN TITLE</h2>
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
+    <!-- <div class="container"> -->
+    <div class="container col-10">
+        <div class="card text border-0">
+            <div class="card-header bg-transparent border-0">
+                <h2 class=" card-title head2">{{page.title}}</h5>
+                    <strong class=" d-inline-block mb-1 text-primary head4">Article by {{page.author}}</strong>
+                    <div class="mb-1 text-muted">{{page.timeStamp}}</div>
+            </div>
+        </div>
+        <div class="card-body border-0">
+            <p class=" card-text content">{{page.content|safe}}</p>
+        </div>
+        <div class="card-footer bg-transparent border-0"">
+            <!-- <div class=" card-footer text-muted border-0""> -->
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validation</title>
+    <style>
+        .myform{
+            margin-top: 20px;
+            height: 50px;
+        }
+        .myform input{
+            width: 150px;
+        }
+        .formerror{
+            color: red;
+        }
+        .btn{
+            width: 40px;
+            height: 20px;
+        }
+    </style>
+</head>
+    <h1>My Form</h1>
+    <form action="myform" method="POST" id="myform" onsubmit="return validateform()">
+        {% csrf_token %} 
+        <div class="myform">
+            <label for="fn">First Name</label>
+            <input type="text" id="fn" name="fname">
+            <span class="formerror" id="fner"></span>
+        </div>
+        <div class="myform">
+            <label for="ln">Last Name </label>
+            <input type="text" id="ln" name="lname">
+            <span class="formerror" id="lner"></span>
+        </div>
+        <div class="myform">
+            <label for="em">Email  </label>
+            <input type="email" id="em" name="email">
+            <span class="formerror" id="emer"></span>
+        </div>
+        <!-- <div class="myform">
+            <label for="ph">Phone </label>
+            <input type="email" id="ph" name="phone">
+            <span class="formerror" id="pher"></span> -->
+        </div>
+        <div class="myform">
+            <label for="pas">Password</label>
+            <input type="password" name="password" id="pas">
+            <span class="formerror" id="pser"></span>
+        </div>
+        <!-- <div class="myform">
+            <label for="cpas">Confirm Password</label>
+            <input type="password" name="cpassword" id="cpas">
+            <span class="formerror" id="cpser"></span>
+        </div> -->
+        <div class="myform">
+            <input type="submit" value="Submit" id="btn">
+        </div>
+        {{message}}
+    </form>
+</body>
+<script>
+
+//  type 1***************************8
+    // function validateform(){
+
+    //     var fname=document.forms["myform"]["fn"].value;
+    //     var lenfn= fname.length;
+    //     if( lenfn < 4 ){
+    //         document.getElementById("fner").innerHTML="Enter first name";
+    //         return false;
+    //     }
+    //     else {
+    //         return true;
+    //     }
+    // }
+    function clearErrors(){
+        errors = document.getElementsByClassName("formerror");
+        for( let item of errors){
+            item.innerHTML= "";
+        }
+
+    }
+    function validateform(){
+    var returnval = true;
+    clearErrors();
+    var fname=document.forms["myform"]["fn"].value;
+    // var lenfn= fname.length;
+    if( fname.length < 4 ){
+        document.getElementById("fner").innerHTML="Length of name is too short";
+        returnval= false;
+    }
+    if( fname.trim() == "" ){
+        document.getElementById("fner").innerHTML="Enter first name";
+        returnval= false;
+    }
+    var lname=document.forms["myform"]["ln"].value;
+    if( lname.length < 4 ){
+        document.getElementById("lner").innerHTML="Length of name is too short";
+        returnval= false;
+    }
+    if( lname.trim() == "" ){
+        document.getElementById("lner").innerHTML="Enter last name";
+        returnval= false;
+    }
+    var email=document.forms["myform"]["em"].value;
+
+    if( email.length > 20 ){
+        document.getElementById("emer").innerHTML="Length of email is too long";
+        returnval= false;
+    }
+      if( email.trim() == "" ){
+        document.getElementById("emer").innerHTML="Enter Email";
+        returnval= false;
+    }
+
+    var pass=document.forms["myform"]["pas"].value;
+
+    if( pass.length > 15 ){
+        document.getElementById("pser").innerHTML="Too long password";
+        returnval= false;
+    }
+      if( pass.trim() == "" ){
+        document.getElementById("pser").innerHTML="Enter your password";
+        returnval= false;
+    }
+    return returnval;
+}
+</script>
+</html>
+
+
+<!-- <script>
+    function myvalid(){
+        var name= document.getElementById("fn").value;
+        var nm= name.length;
+        if (nm < 5 ) {
+        document.getElementById("error").innerHTML = "Enter username"; 
+        }     
+    }
+</script> -->
